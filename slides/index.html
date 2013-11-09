@@ -5,34 +5,61 @@
     <title></title>
     <meta name="viewport" content="width=792, user-scalable=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <!-- MathJax -->
     <!-- CSS Stle -->
     <link rel="stylesheet" href="lib/shower/themes/ribbon/styles/screen.css">
     <link rel="stylesheet" href="lib/highlight/styles/tomorrow.css" type="text/css"/>
     <style type="text/css" media="all">
-        section.slide.slide-code h2 a {
-            font-size: 0.5em;
-        }
-        section.slide.slide-code pre {
-            margin: 0 0 0 20px;
-        }
-        section.slide p.source {
-            color: #000;
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            text-align: right;
-            font-size: 0.8em;
-            margin: 0px;
-        }
-        section.slide p.source a {
-            color: #000;
-        }
+
+        //clean table
         table.clean td img {
             vertical-align: top;
         }
         table.clean td {
             background: none;
         }
+
+        //smaller code
+        pre.small {
+        }
+        pre.small code {
+            font-size: 16px;
+            line-height: 2em;
+        }
+
+        //two column slides
+        // section.slide.twocol div.wrap {
+        //     width: 100%;
+        //     margin:0 auto;
+        // }
+        section.slide.twocol div.left {
+            width: 50%;
+            float: left;
+        }
+        section.slide.twocol div.right {
+            width: 50%;
+            float: right;
+        }
+
+        section.slide.twocol-ll div.left {
+            width: 65%;
+            float: left;
+        }
+        section.slide.twocol-ll div.right {
+            width: 35%;
+            float: right;
+        }
+
+        section.slide.twocol-lr div.left {
+            width: 35%;
+            float: left;
+        }
+        section.slide.twocol-lr div.right {
+            width: 65%;
+            float: right;
+        }
+
+
     </style>
 </head>
 <body class="list">
@@ -85,8 +112,103 @@
     </section>
 
 
+    <!-- Testing Layout and Libraries -->
+    <section id="begin-test" class="slide shout">
+        <div><h2>Start<br />Playground</h2></div>
+    </section>
+    <section id="test-mathjax" class="slide"><div>
+        <h2>Test Mathjax</h2>
+        <p>$$\frac{a}{b^c}$$</p>
+    </div></section>
 
-    <!-- ENDING -->
+
+    <section id="test-twocol" class="slide twocol"><div>
+        <h2>Testing Two Column model</h2>
+        <div class="left">Hi</div>
+        <div class="right">Hello</div>
+    </div><style>
+        #test-twocol div.left {
+            background: red;
+        }
+        #test-twocol div.right {
+            background: blue;
+        }
+    </style></section>
+
+    <section id="test-fullpage-code" class="slide"><div>
+<h2>Testing Fullpage Code</h2>
+<pre class='language-r'>
+<code>prior.choice1 <- function(x) {
+  dgamma(x, 6, 2)
+}
+print("Hello")
+curve(prior.choice1, from=0, to=10)
+curve(prior.choice2, from=0, to=10, add=TRUE, col='red')</code>
+    </pre>
+    </div></section>
+
+    <section id="test-twocol-code" class="slide twocol"><div>
+<h2>Two Column with smaller code</h2>
+<div class='left'><pre class="language-r small">
+<code>prior.choice1 <- function(x) {
+  dgamma(x, 6, 2)
+}
+print("Hello")
+curve(prior.choice1, from=0, to=10)
+curve(prior.choice2, from=0, to=10, add=TRUE, col='red')</code>
+        </pre></div>
+<div class="right">
+    <ul>
+        <li>efe</li>
+        <li>entire</li>
+        <li>eer</li>
+        <li>eef</li>
+    </ul>
+</div>
+    </div></section>
+
+    <section id="test-twocol-largeleft" class="slide twocol-ll"><div>
+<h2>Two Column with larger left half</h2>
+<div class='left'><pre class="language-r small">
+<code>prior.choice1 <- function(x) {
+  dgamma(x, 6, 2)
+}
+print("Hello")
+curve(prior.choice1, from=0, to=10)
+curve(prior.choice2, from=0, to=10, add=TRUE, col='red')</code>
+        </pre></div>
+<div class="right">
+    <ul>
+        <li>efe</li>
+        <li>entire</li>
+        <li>eer</li>
+        <li>eef</li>
+    </ul>
+</div>
+    </div></section>
+
+    <section id="test-twocol-largeright" class="slide twocol-lr"><div>
+<h2>Two Column with larger right half</h2>
+<div class="left">
+    <ul>
+        <li>efe</li>
+        <li>entire</li>
+        <li>eer</li>
+        <li>eef</li>
+    </ul>
+</div>
+<div class='right'><pre class="language-r small">
+<code>prior.choice1 <- function(x) {
+  dgamma(x, 6, 2)
+}
+print("Hello")
+curve(prior.choice1, from=0, to=10)
+curve(prior.choice2, from=0, to=10, add=TRUE, col='red')</code>
+        </pre></div>
+    </div></section>
+
+
+    <!-- End Slide -->
     <section id='end' class='slide shout cover'><div>
         <h2>THE END</h2>
         <img src="pics/end_cover.jpg" alt="">
@@ -105,12 +227,19 @@
     <!-- END OF SLIDE CONTENT -->
     <p class="badge"><a href="https://github.com/ccwang002/2013-OSSF-R-Statistics">Fork me on Github</a></p>
     <div class="progress"><div></div></div>
+
+    <!-- Library -->
     <script src="lib/highlight/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
     <script>
-        $(document).ready(function() {
-            $('pre code').each(function(i, e) {hljs.highlightBlock(e)});
-        });
+        hljs.initHighlightingOnLoad();
     </script>
     <script src="lib/shower/shower.min.js"></script>
+    <!-- Mathjax -->
+    <!-- During local development, use localhost mathjax for speed-->
+    <script src="file:///Users/liang/.ipython/profile_default/static/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- online Mathjax CDN -->
+    <!--
+    <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    -->
 </body>
 </html>
