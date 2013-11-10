@@ -22,9 +22,8 @@
     - 參考資料：
         - [黃文璋. (2011) 統計裡的估計, *數學傳播* 35卷2期](http://w3.math.sinica.edu.tw/media/pdf.jsp?m_file=ZDMxMi8zMTIwMQ==)
 - Vectorize in R
-    - *playing with `data.frame`*
+    - (cover in 1st talk) playing with `data.frame`
     - basic `mean`, `var`
-    - *`for` or `*apply`*
     - `cut`
 - Probability Funcition in R
     - `dxxxx`: PDF for dist. xxxx
@@ -43,8 +42,8 @@
     - `t.test`
     - `chi.test`
     - normal distribution test (?)
-        - QQ-plot
         - `hist`
+        - QQ-plot
         - `ks.test`
 - 線性迴歸簡介
     - `formula`
