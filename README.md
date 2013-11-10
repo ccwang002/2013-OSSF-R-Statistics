@@ -11,7 +11,7 @@ The slide is powered by
 
 Their origin licenses is at `slides/lib/shower/License.md` and `slides/lib/highlight.js/LICENSE` respectively.
 
-除另外標示，本投影片內容以及相關 R 程式碼係授用創用 CC 姓名標示 3.0 台灣 授權條款授權。授權條款可以參見 `LICENSE` 文件（UTF-8）以及其 [網路複本][LICENSE-LINK]。
+除另外標示，本投影片內容（`slides` 目錄下）係使用創用 CC 姓名標示 3.0 台灣（CC3.0 BY TW）授權條款授權；程式碼係使用 MIT 授權。授權條款可以分別參見 `LICENSE_CC` 與其[網路複本][LICENSE-LINK]以及 `LICENSE_MIT`。
 
 [shower.js]: https://github.com/shower/shower
 [highlight.js]: http://highlightjs.org/
