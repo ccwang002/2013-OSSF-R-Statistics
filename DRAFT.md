@@ -55,8 +55,19 @@
     - Example
         - using Beta-Binomial
 
-## TODO
-
+## 舉例
+- 魯蛇等公車
+    - 陪女孩兒等公車的故事……的後續
+    - 女孩 A 的公車平均 X_A 分鐘來一班 ~ Gamma
+        - 等超過 10 分鐘的機率？
+        - 等 5 - 10 分鐘的機率？
+    - N 個女孩的公車，平均 X_1, ..., X_N 來一班
+    - 希望公車 5 分鐘內可以等到，女孩們的公車都 15 分鐘來一班
+- 正妹等公車
+    - 帥哥 A B C 的公車 6, 8, 10 分鐘來一班
+        - 任何人的公車來了講好就要跟誰走 > <
+        - 聊一聊發現 A B 都是魯蛇
+        - 請問，在 15 分鐘內上車，能跟 C 同行的機率是？
 - Choose a dataset
     - Sex Ratio of NTU B02 Newcomer of Each Discipline
     - `hist(iris$Sepal.Width)`
