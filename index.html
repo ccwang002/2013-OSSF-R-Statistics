@@ -5,6 +5,7 @@
     <title></title>
     <meta name="viewport" content="width=792, user-scalable=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+
     <!-- MathJax -->
     <!-- CSS Stle -->
     <link rel="stylesheet" href="lib/shower/themes/ribbon/styles/screen.css">
@@ -61,6 +62,7 @@
 
 
     </style>
+
 </head>
 <body class="list">
     <!-- Header in overview -->
@@ -84,32 +86,48 @@
         <p><a href="http://about.me/lbwang" target="_blank">Liang Bo Wang</a> (亮亮)</br>
         Under CC 3.0 BY TW License</p>
         <img src="pics/cover.jpg" alt="">
+        <p class='src-link'>
+            pic source:
+            <a href="http://seuconteudonaweb.wordpress.com/2013/08/06/a-big-analise-de-dados/"
+               target="_blank">
+                http://seuconteudonaweb.wordpress.com/2013/08/06/a-big-analise-de-dados/
+            </a>
+        </p>
     </div>
     <style>
         #cover h2 {
-            margin:40px 0 80px;
-            color:#FFF;
-            text-align:center;
-            font-size:120px;
+            margin: 65px 0 65px;
+            color: #FFF;
+            text-align: center;
+            font-size: 130px;
         }
         #cover h3 {
-            margin:0px 0 0;
-            color:#FFF;
-            text-align:center;
-            font-size:30px;
+            margin: -30px 0 0 0;
+            color: #FFF;
+            text-align: center;
+            font-size: 32px;
         }
         #cover p {
-            margin:30px 0 0;
-            text-align:center;
-            color:#DDD;
-            font-size:30px;
+            margin: 30px 0 0;
+            text-align: center;
+            color: #DDD;
+            font-size: 32px;
         }
         #cover p a {
-            color:#DDD;
+            color: #DDD;
+        }
+        #cover .src-link {
+            position: absolute;
+            font-size: 14px;
+            text-align: right;
+            bottom: 10px;
+            right: 10px;
+        }
+        #cover img {
+            opacity: 0.7;
         }
     </style>
     </section>
-
 
     <!-- Testing Layout and Libraries -->
     <section id="begin-test" class="slide shout">
@@ -224,18 +242,34 @@ curve(prior.choice2, from=0, to=10, add=TRUE, col='red')</code>
     </div></section>
 
     <!-- End Slide -->
-    <section id='end' class='slide shout cover'><div>
-        <h2>THE END</h2>
+    <section id='end' class='slide shout cover w'><div>
+        <h2>Thank You!</h2>
         <img src="pics/end_cover.jpg" alt="">
+        <p class="src-link">
+            pic source:
+            <a href="http://www.r-bloggers.com/mapping-the-worlds-biggest-airlines/"
+               target="_blank">
+                http://www.r-bloggers.com/mapping-the-worlds-biggest-airlines/
+            </a>
+        </p>
     </div>
     <style>
+        #end a {
+            color: #DDD;
+        }
         #end h2 {
             position: absolute;
-            top: 75%;
+            top: 10%;
+            color: #DDD;
+            font-size: 80px;
+        }
+        #end .src-link {
+            position: absolute;
+            font-size: 14px;
+            color: #DDD;
             text-align: right;
-            margin: 0 -40px;
-            color: #333;
-            opacity: 0.5;
+            top: 85%;
+            right: 10px;
         }
     </style></section>
 
@@ -252,10 +286,8 @@ curve(prior.choice2, from=0, to=10, add=TRUE, col='red')</code>
     <script src="lib/shower/shower.min.js"></script>
     <!-- Mathjax -->
     <!-- During local development, use localhost mathjax for speed-->
-    <script src="file:///Users/liang/.ipython/profile_default/static/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!--<script src="file:///Users/liang/.ipython/profile_default/static/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
     <!-- online Mathjax CDN -->
-    <!--
     <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    -->
 </body>
 </html>
