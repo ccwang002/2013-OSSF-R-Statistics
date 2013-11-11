@@ -133,13 +133,11 @@
 
 
     <section id="stat-rumor" class="slide"><div>
-        <h2>說到統計，很多人會這麼說…</h2>
+        <h2>說到統計，很多人這麼說…</h2>
         <figure>
             <blockquote>
                 <p>根據統計的資料顯示，床是全世界最危險的地方，因為大多數的人都是死在床上，所以如果你想活久一點，千萬別上床。</p>
             </blockquote>
-            <figcaption>- <a href="http://data.book.hexun.com.tw/chapter-18645-1-1.shtml" target="_blank">和訊網</a>
-            以及來源不明的統計資料。</figcaption>
         </figure>
         <figure class="next">
             <blockquote>
@@ -151,11 +149,7 @@
                 <p>統計是門<b>不精確的科學</b>。</p>
             </blockquote>
         </figure>
-    </div><style>
-        #stat-rumor figure {
-            margin: -10px 0;
-        }
-    </style></section>
+    </div></section>
 
 
     <section id="why-learn-stat" class="slide"><div>
@@ -215,7 +209,7 @@
 
 
     <section id="stat-use-r" class="slide"><div>
-        <h2>統計 using R</h2>
+        <h2>統計 Using R 心得</h2>
         <p class="tighter">善用 <code>data.frame</code> 相關的 filtering。<br />
         詳見 <a href="http://adv-r.had.co.nz/Subsetting.html" target="_blank">
                 Subsetting, Advanced R programming by Hadley Wickham
@@ -224,14 +218,19 @@
 <code>iris  # a built-in data.frame
 iris[, c('Sepal.Length', 'Petal.Width')]
 iris[iris$Species == 'setosa', ]
+# 以下兩行結果相同
 iris[iris$Sepal.Length > 7.5 &amp; iris$Petal.Width < 2.2, ]
 subset(iris, Sepal.Length > 7.5 &amp; Petal.Width < 2.2)</code>
         </pre>
-    </div></section>
+    </div><style>
+        #stat-use-r h2 {
+            margin: -10px 0 25px;
+        }
+    </style></section>
 
 
     <section id="r-vector" class="slide"><div>
-        <h2>R basic functions are <em>vectorized</em></h2>
+        <h2>R Basic Functions Are <em>Vectorized</em></h2>
         <p class="tighter">大部份內建的函數可以處理 vector，不用自己寫迴圈，也較快。</p>
         <pre class="language-r">
 <code>> exp(1)
@@ -244,24 +243,68 @@ subset(iris, Sepal.Length > 7.5 &amp; Petal.Width < 2.2)</code>
     </div></section>
 
 
-    <section id="basic-r-stat" class="slide"><div>
-        <h2>Basic Statistic Function in R</h2>
-    </div></section>
+    <section id="basic-r-stat" class="slide twocol"><div>
+        <h2>R Basic (Statistic) Functions</h2>
+        <div class="left">
+            <pre class="language-r">
+<code>mean, var, sd, cor
+min, max, median
+abs, round
+range  # 回傳 c(min, max)
+choose  # C(n, x)
+factorial  # n!
+# log 版
+lchoose, lfactorial</code>
+            </pre>
+        </div><div class="right next">
+            <pre class="language-r">
+<code>quantile # Ex. 基測 PR 值
+# 懶人包，針對物件多型結果不同
+summary(1:10)
+summary(factor(
+  c('a', rep('b', 3))
+))
+# 對 data.frame 也行
+summary(iris)</code>
+            </pre>
+        </div>
+    </div>
+    <footer>一句話，高中教過的敘述統計都有對應的內建函數。</footer>
+    </section>
 
 
-    <section id="basic-r-stat-contd" class="slide"><div>
-        <h2>Basic Statistic Function in R (Cont'd)</h2>
+    <section id="basic-r-stat-contd" class="slide twocol"><div>
+    <div class="left">
+        <pre class="language-r">
+<code># 連加、連除
+> prod(1:4)
+[1] 24
+> sum(1:10)
+[1] 55
+> cumprod(1:4)
+[1]  1  2  6 24
+> cumsum(1:5)
+[1]  1  3  6 10 15</code>
+        </pre>
+    </div><div class="right">
+        <pre class="language-r">
+<code>> table(c(1:5, 1, 1, 3))
+1 2 3 4 5
+3 1 2 1 1
+
+# misc.
+is.na  #判斷是否有 NA
+seq    #建一個數列
+rep    #重覆一段數列
+diff   #數列項目間的差</code>
+        </pre>
+    </div>
     </div></section>
 
 
     <section id="intro-prob-fun" class="slide"><div>
         <h2>Probability Function in R</h2>
         <!-- 使用 Norm 舉例 -->
-    </div></section>
-
-
-    <section id="prob-fun-list" class="slide"><div>
-        <h2>Built-in Distributions (Part)</h2>
     </div></section>
 
 
@@ -281,10 +324,12 @@ subset(iris, Sepal.Length > 7.5 &amp; Petal.Width < 2.2)</code>
 
     <section id="story-sol" class="slide"><div>
         <h2>解</h2>
+        <figure><blockquote>
         <p>輕輕地交出手中的車鑰匙，交給醫生載老人去醫院。<br />
-        陪自己的夢中情人等公車。</p>
+        陪自己的夢中情人等公車，浪漫就此開展……</p>
+        </blockquote></figure>
         <h2 class="next">故事的後續</h2>
-        <p class="next tighter">我們知道公車來的時間是不固定的……<span class="next"><em>一個隨機事件</em></span></p>
+        <p class="next tighter">我們知道公車來的時間是不固定的……<b class="next">一個隨機事件</b></p>
     </div></section>
 
 
@@ -293,7 +338,7 @@ subset(iris, Sepal.Length > 7.5 &amp; Petal.Width < 2.2)</code>
         <div class="left">
             <p class="tighter">$$T \sim Gamma(a, b)$$</p>
             <p class="tighter">Gamma 分配有以下特性：
-                $$ E[T] = \frac{a}{b}, ~ Var[T] = \frac{a}{b^2}$$
+                $$ E[T] = \frac{a}{b}, ~ Var[T] = \frac{E[T]}{b}$$
             </p>
             <p class="tighter">假設公車 15 分鐘來一班，則
                 $$a=15, b=1$$
@@ -305,7 +350,7 @@ subset(iris, Sepal.Length > 7.5 &amp; Petal.Width < 2.2)</code>
 curve(bus.gamma, from=0, to=50)</code>
             </pre>
             <img src="r-fig/story_model1/gamma_1.png" width="100%" alt="">
-            <p class="tighter next">How about \(a = 7.5, b = 0.5\) ?</p>
+            <center class="next"><p class="tighter">為何不用 \(a = 7.5, b = 0.5\) ?</p></center>
         </div>
     </div></section>
 
@@ -313,9 +358,9 @@ curve(bus.gamma, from=0, to=50)</code>
     <section id="bus-arrival-model-contd" class="slide twocol-lr"><div>
         <div class="left">
             <ul>
-                <li>維持 \(\frac{a}{b}\) 保持平均值</li>
-                <li>調整可以改變時間的<br />分散程度</li>
-                <li>總之 $$
+                <li>控制 \(\frac{a}{b}\) 固定平均值</li>
+                <li>用 \(b\) 大小調整時間的<br />分散程度</li>
+                <li>感覺還可以接受，暫用 $$
                     T \sim Gamma(15, 1)
                 $$</li>
                 <li>Gamma 分配到底是什麼函數可以見
@@ -327,7 +372,10 @@ curve(bus.gamma, from=0, to=50)</code>
         </div>
         <div class="right">
             <img src="r-fig/story_model1/gamma_multi.png" width="100%" alt="">
-            <center><a href="http://" target="_blank">程式碼在此</a></center>
+            <center>
+                <a href="https://github.com/ccwang002/2013-OSSF-R-Statistics/blob/master/Rcode/story/model_1.R"
+                   target="_blank">程式碼見此</a>
+            </center>
         </div>
     </div></section>
 
@@ -339,7 +387,7 @@ curve(bus.gamma, from=0, to=50)</code>
             </p>
             <pre class="language-r tighter">
 <code>1 - pgamma(18, 15, 1)
-# 0.208</code>
+# 0.208 橘色區域</code>
             </pre>
             <img class="next" src="r-fig/story_model1/cdf_area.png" width="90%" alt="">
         </div><div class="right next">
@@ -352,11 +400,16 @@ curve(bus.gamma, from=0, to=50)</code>
             <pre class="language-r">
 <code>pgamma(15, 15, 1) -
   pgamma(10, 15, 1)
-# 0.451
+# 可以更簡潔寫成
 diff(pgamma(c(10, 15), 15, 1))
-# 0.451</code>
+# 0.451 藍色區域</code>
             </pre>
         </div>
+    </div></section>
+
+
+    <section id="prob-fun-list" class="slide"><div>
+        <h2>Other Built-in Distributions (Part)</h2>
     </div></section>
 
 
@@ -368,7 +421,7 @@ diff(pgamma(c(10, 15), 15, 1))
 
     <!-- Testing Layout and Libraries -->
     <section id="begin-test" class="slide shout">
-        <div><h2>Start<br />Playground</h2></div>
+        <div><h2>Playground</h2></div>
     </section>
 
 
