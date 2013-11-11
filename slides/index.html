@@ -12,7 +12,8 @@
     <link rel="stylesheet" href="lib/highlight/styles/tomorrow.css" type="text/css"/>
     <style type="text/css" media="all">
 
-        //clean table
+        /* clean table */
+
         table.clean td img {
             vertical-align: top;
         }
@@ -20,19 +21,18 @@
             background: none;
         }
 
-        //smaller code
-        pre.small {
+        /* tighter paragraph */
+        p.tighter {
+            margin: 0 0 25px;
         }
+
+        /* smaller code */
         pre.small code {
             font-size: 16px;
             line-height: 2em;
         }
 
-        //two column slides
-        // section.slide.twocol div.wrap {
-        //     width: 100%;
-        //     margin:0 auto;
-        // }
+        /* two column slides */
         section.slide.twocol div.left {
             width: 50%;
             float: left;
@@ -59,8 +59,6 @@
             width: 65%;
             float: right;
         }
-
-
     </style>
 
 </head>
@@ -128,6 +126,144 @@
         }
     </style>
     </section>
+
+
+    <section id="stat-rumor" class="slide"><div>
+        <h2>說到統計，很多人會這麼說…</h2>
+        <figure>
+            <blockquote>
+                <p>根據統計的資料顯示，床是全世界最危險的地方，因為大多數的人都是死在床上，所以如果你想活久一點，千萬別上床。</p>
+            </blockquote>
+            <figcaption>- <a href="http://data.book.hexun.com.tw/chapter-18645-1-1.shtml" target="_blank">和訊網</a>
+            以及來源不明的統計資料。</figcaption>
+        </figure>
+        <figure class="next">
+            <blockquote>
+                <p>慶祝生日有利於延長壽命，因為統計表明，<br />那些活得越長的人，過的生日也越多。</p>
+            </blockquote>
+        </figure>
+        <figure class="next">
+            <blockquote>
+                <p>統計是門<b>不精確的科學</b>。</p>
+            </blockquote>
+        </figure>
+    </div><style>
+        #stat-rumor figure {
+            margin: -10px 0;
+        }
+    </style></section>
+
+
+    <section id="why-learn-stat" class="slide"><div>
+        <h2>為什麼要學統計？</h2>
+        <ul>
+            <li>在不精準的情況下（不確定性），一個有系統的衡量方式。</li>
+            <li class="next">統計的評估的確帶有主觀的成份
+                <ul class="next">
+                    <li>透過系統化分析</li>
+                    <li>推估主觀的成份如何影響評估的結果</li>
+                </ul>
+            </li>
+            <li class="next">一般情況，無法普查、窮舉（例：馬總統的滿意度）
+                <ul class="next">
+                    <li>仰賴一小部份觀察到的結果（樣本）</li>
+                    <li>依據樣本做出推論（統計推論）</li>
+                    <li>跟樣本抽選的過程（抽樣）</li>
+                </ul>
+            </li>
+        </ul>
+    </div></section>
+
+
+    <section id="stat-contain" class="slide"><div>
+        <h2>統計的兩大部份</h2>
+        <ul>
+            <li>機率理論</li>
+            <li>統計推論</li>
+        </ul>
+        <h2 class="next">但這畢竟半小時講不完</h2>
+        <ul class="next">
+            <li>還再讀書的各位，不妨修個一學期/一學年…</li>
+            <li>自行讀統計的書籍</li>
+            <li>參考
+                <a href="http://w3.math.sinica.edu.tw/media/pdf.jsp?m_file=ZDMxMi8zMTIwMQ=="
+                   target="_blank">
+                    黃文璋. (2011) 統計裡的估計, <i>數學傳播</i> 35卷2期
+                </a>
+            </li>
+        </ul>
+    </div><style>
+        #stat-contain h2 {
+            margin: -10px 0 30px;
+        }
+    </style></section>
+
+
+    <section id="but-r" class="slide shout"><div>
+        <h2>今天講 <code>R</code> 滴！</h2>
+        <p>有統計背景會更懂，但今天不刻意提理論，歡迎結束後來討論。</p>
+        <footer>
+            反正老師都這麼說，OK 的！ <br />
+            「大家高中就會了嘛 XD」 By 統計學教授 <br />
+            「大家上大學就會了喔 &gt;.^」 By 高中數學老師
+        </footer>
+    </div></section>
+
+
+    <section id="stat-use-r" class="slide"><div>
+        <h2>統計 using R</h2>
+        <p class="tighter">善用 <code>data.frame</code> 相關的 filtering。<br />
+        詳見 <a href="http://adv-r.had.co.nz/Subsetting.html" target="_blank">
+                Subsetting, Advanced R programming by Hadley Wickham
+        </a></p>
+        <pre class="language-r">
+<code>iris  # a built-in data.frame
+iris[, c('Sepal.Length', 'Petal.Width')]
+iris[iris$Species == 'setosa', ]
+iris[iris$Sepal.Length > 7.5 &amp; iris$Petal.Width < 2.2, ]
+subset(iris, Sepal.Length > 7.5 &amp; Petal.Width < 2.2)</code>
+        </pre>
+    </div></section>
+
+
+    <section id="r-vector" class="slide"><div>
+        <h2>R basic functions are <em>vectorized</em></h2>
+        <p class="tighter">大部份內建的函數可以處理 vector，不用自己寫迴圈，也較快。</p>
+        <pre class="language-r">
+<code>> exp(1)
+[1] 2.718282
+> exp(c(1, 2, 4, 6))
+[1]   2.718282   7.389056  54.598150 403.428793
+> cos(c(0, pi))
+[1]  1 -1</code>
+        </pre>
+    </div></section>
+
+
+    <section id="basic-r-stat" class="slide"><div>
+        <h2>Basic Statistic Function in R</h2>
+    </div></section>
+
+
+    <section id="basic-r-stat-contd" class="slide"><div>
+        <h2>Basic Statistic Function in R (Cont'd)</h2>
+    </div></section>
+    
+    
+    <section id="intro-prob-fun" class="slide"><div>
+        <h2>Probability Function in R</h2>
+        <!-- 使用 Norm 舉例 -->
+    </div></section>
+    
+    
+    <section id="prob-fun-list" class="slide"><div>
+        <h2>Built-in Distributions (Part)</h2>
+    </div></section>
+    
+    
+    <section id="rand-gen" class="slide"><div>
+        <h2>Random Number Generator</h2>
+    </div></section>
 
     <!-- Testing Layout and Libraries -->
     <section id="begin-test" class="slide shout">
