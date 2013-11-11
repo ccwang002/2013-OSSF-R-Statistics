@@ -13,7 +13,6 @@
     <style type="text/css" media="all">
 
         /* clean table */
-
         table.clean td img {
             vertical-align: top;
         }
@@ -24,6 +23,11 @@
         /* tighter paragraph */
         p.tighter {
             margin: 0 0 25px;
+        }
+
+        /* tighter code */
+        pre.tighter {
+            margin: 0 0 20px;
         }
 
         /* smaller code */
@@ -261,9 +265,106 @@ subset(iris, Sepal.Length > 7.5 &amp; Petal.Width < 2.2)</code>
     </div></section>
 
 
+    <section id="story" class="slide"><div>
+        <h2>範例要從一個浪漫的故事說起……</h2>
+        <figure><blockquote>
+            <p class='tighter'>一個男生開著車，在一個暴風雨的晚上。<br />
+            經過一個車站，三人正焦急的等公車。</p>
+            <p class='tighter'>
+            一位是需要急救的老人；另外一位是醫生，他正在照顧那位老人；<br />
+            最後一位則是他的夢中情人。</p>
+            <p class='tighter'>但男生的車只能再坐一個人。</p>
+        </blockquote></figure>
+        <center class="next"><h2>請問，他應該怎麼做？</h2></center>
+    </div></section>
+
+
+    <section id="story-sol" class="slide"><div>
+        <h2>解</h2>
+        <p>輕輕地交出手中的車鑰匙，交給醫生載老人去醫院。<br />
+        陪自己的夢中情人等公車。</p>
+        <h2 class="next">故事的後續</h2>
+        <p class="next tighter">我們知道公車來的時間是不固定的……<span class="next"><em>一個隨機事件</em></span></p>
+    </div></section>
+
+
+    <section id="bus-arrival-model" class="slide twocol"><div>
+        <h2>公車來的時間滿足以下分配</h2>
+        <div class="left">
+            <p class="tighter">$$T \sim Gamma(a, b)$$</p>
+            <p class="tighter">Gamma 分配有以下特性：
+                $$ E[T] = \frac{a}{b}, ~ Var[T] = \frac{a}{b^2}$$
+            </p>
+            <p class="tighter">假設公車 15 分鐘來一班，則
+                $$a=15, b=1$$
+            </p>
+        </div>
+        <div class="right next">
+            <pre class="language-r small tighter">
+            <code>bus.gamma <- function(t) dgamma(t, 15, 1)
+curve(bus.gamma, from=0, to=50)</code>
+            </pre>
+            <img src="r-fig/story_model1/gamma_1.png" width="100%" alt="">
+            <p class="tighter next">How about \(a = 7.5, b = 0.5\) ?</p>
+        </div>
+    </div></section>
+
+
+    <section id="bus-arrival-model-contd" class="slide twocol-lr"><div>
+        <div class="left">
+            <ul>
+                <li>維持 \(\frac{a}{b}\) 保持平均值</li>
+                <li>調整可以改變時間的<br />分散程度</li>
+                <li>總之 $$
+                    T \sim Gamma(15, 1)
+                $$</li>
+                <li>Gamma 分配到底是什麼函數可以見
+                    <a href="http://en.wikipedia.org/wiki/Gamma_distribution"
+                        target="_blank">wiki
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="right">
+            <img src="r-fig/story_model1/gamma_multi.png" width="100%" alt="">
+            <center><a href="http://" target="_blank">程式碼在此</a></center>
+        </div>
+    </div></section>
+    
+
+    <section id="story-model1-est" class="slide twocol"><div>
+        <div class="left">
+            <p class="tighter">公車超過 18 分鐘才來的機率？
+                $$ P(T > 18) = 1 - P(T \leq 18) $$
+            </p>
+            <pre class="language-r tighter">
+<code>1 - pgamma(18, 15, 1)
+# 0.208</code>
+            </pre>
+            <img class="next" src="r-fig/story_model1/cdf_area.png" width="90%" alt="">
+        </div><div class="right next">
+            <p class="tighter">公車 10 - 15 分鐘來的機率？
+                $$\begin{align}
+                    &P(10 < T \leq 15) \\
+                = &P(T \leq 10) - P(T \leq 15)
+                \end{align}$$
+            </p>
+            <pre class="language-r">
+<code>pgamma(15, 15, 1) - 
+  pgamma(10, 15, 1)
+# 0.451
+diff(pgamma(c(10, 15), 15, 1))
+# 0.451</code>
+            </pre>
+        </div>
+    </div></section>
+
+
     <section id="rand-gen" class="slide"><div>
         <h2>Random Number Generator</h2>
     </div></section>
+
+
 
     <!-- Testing Layout and Libraries -->
     <section id="begin-test" class="slide shout">
