@@ -24,7 +24,6 @@
 - Vectorize in R
     - (cover in 1st talk) playing with `data.frame`
     - basic `mean`, `var`
-    - `cut`
 - Probability Funcition in R
     - `dxxxx`: PDF for dist. xxxx
     - `pxxxx`: CDF
