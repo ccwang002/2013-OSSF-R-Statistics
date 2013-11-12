@@ -7,7 +7,7 @@ Present at 2013.11.16 OSSF X Taiwan R User Group X NCHU IT Club.
 The slide is powered by
 
 - [shower.js]\: HTML5 framework by Hakim El Hattab *et al.*, under MIT license
-- [highlight.js]\: Syntax highlight library by Ivan Sagalaev *et al., under MIT license
+- [highlight.js]\: Syntax highlight library by Ivan Sagalaev *et al.*, under MIT license
 
 Their origin licenses is at `slides/lib/shower/License.md` and `slides/lib/highlight.js/LICENSE` respectively.
 
