@@ -268,8 +268,8 @@ summary(factor(
 summary(iris)</code>
             </pre>
         </div>
+        <footer>一句話，高中教過的敘述統計都有對應的內建函數。</footer>
     </div>
-    <footer>一句話，高中教過的敘述統計都有對應的內建函數。</footer>
     </section>
 
 
@@ -305,7 +305,80 @@ diff   #數列項目間的差</code>
     <section id="intro-prob-fun" class="slide"><div>
         <h2>Probability Function in R</h2>
         <!-- 使用 Norm 舉例 -->
+        <p class="tighter">R 內建了許多分配函數。一般而言，一個分配會以下 4 種 function，以常態分配 \(X \sim Norm(0, 1)\) 為例。</p>
+        <table><thead>
+            <tr>
+                <td>Function</td>
+                <td>Description</td>
+                <td>Math Form</td>
+            </tr>
+        </thead><tbody>
+            <tr>
+                <td><code>d...</code></td>
+                <td>Probability Density Fun. (PDF)</td>
+                <td>\(P(X \leq x) = \int_{-\infty}^x f_X(x) dx\)</td>
+            </tr>
+            <tr>
+                <td><code>p...</code></td>
+                <td>Cumulative Density Fun. (CDF)</td>
+                <td>\(P(X \leq x)= F_X(x)\)</td>
+            </tr>
+            <tr>
+                <td><code>q...</code></td>
+                <td>Quantile Fun. (inverse CDF)</td>
+                <td>\(q \to x\) s.t. \(F_X(x) = q\)</td>
+            </tr>
+            <tr>
+                <td><code>r...</code></td>
+                <td>Random Number Generator</td>
+                <td>generate \(\{X_i\}\)</td>
+            </tr>
+        </tbody></table>
     </div></section>
+
+
+    <section id="intro-prob-fun-contd" class="slide"><div>
+        <table><tr>
+            <td><code>dnorm</code></td>
+            <td>$$f_X(x) = \frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}$$</td>
+            <td><pre class="language-r small tighter">
+<code>dnorm(-Inf) # 0
+dnorm(0) # 1/sqrt(2*pi)=0.4
+dnorm(Inf) # 0</code>
+            </pre></td>
+        </tr>
+        <tr>
+            <td><code>pnorm</code></td>
+            <td>$$F_X(x) = \int_{-\infty}^{x}\frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}} dx$$</td>
+            <td><pre class="language-r small tighter">
+<code>pnorm(-Inf) # 0
+pnorm(0) # 0.5
+pnorm(Inf) # 1</code>
+            </pre></td>
+        </tr>
+        <tr>
+            <td><code>qnorm</code></td>
+            <td>$$F^{-1}_X(q) = x \\ q\in(0, 1)$$</td>
+            <td><pre class="language-r small tighter">
+<code>qnorm(0) # -Inf
+qnorm(0.5) # 0
+qnorm(1) # Inf</code>
+            </pre></td>
+        </tr>
+        <tr>
+            <td><code>rnorm</code></td>
+            <td>$$X_1, \ldots, X_n \overset{iid}{\sim} Norm(0, 1)$$</td>
+            <td><pre class="language-r small tighter">
+<code>> rnorm(4)  # result differs
+[1]  0.87301675  1.78227369
+[3]  0.05253579 -0.41865347</code>
+            </pre></td>
+        </tr></table>
+    </div><style>
+        #intro-prob-fun-contd table td {
+            vertical-align: middle;
+        }
+    </style></section>
 
 
     <section id="story" class="slide"><div>
@@ -409,7 +482,7 @@ diff(pgamma(c(10, 15), 15, 1))
 
 
     <section id="prob-fun-list" class="slide"><div>
-        <h2>Other Built-in Distributions (Part)</h2>
+        <h2>Built-in Distributions (Part)</h2>
     </div></section>
 
 
@@ -578,7 +651,9 @@ curve(prior.choice2, from=0, to=10, add=TRUE, col='red')</code>
     <!-- During local development, use localhost mathjax for speed-->
     <!--<script src="file:///Users/liang/.ipython/profile_default/static/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
     <!-- online Mathjax CDN -->
+    
     <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
     <!-- Google Analytics -->
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
