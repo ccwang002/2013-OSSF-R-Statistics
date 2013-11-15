@@ -30,6 +30,11 @@
             margin: 0 0 20px;
         }
 
+        /* inline */
+        p.inline {
+            margin-bottom: 0px;
+        }
+
         /* smaller code */
         pre.small code {
             font-size: 16px;
@@ -314,22 +319,22 @@ diff   #數列項目間的差</code>
             </tr>
         </thead><tbody>
             <tr>
-                <td><code>dnorm</code></td>
+                <td><code>d...</code></td>
                 <td>Probability Density Fun. (PDF)</td>
                 <td>\(P(X \leq x) = \int_{-\infty}^x f_X(x) dx\)</td>
             </tr>
             <tr>
-                <td><code>pnorm</code></td>
+                <td><code>p...</code></td>
                 <td>Cumulative Density Fun. (CDF)</td>
                 <td>\(P(X \leq x)= F_X(x)\)</td>
             </tr>
             <tr>
-                <td><code>qnorm</code></td>
+                <td><code>q...</code></td>
                 <td>Quantile Fun. (inverse CDF)</td>
                 <td>\(q \to x\) s.t. \(F_X(x) = q\)</td>
             </tr>
             <tr>
-                <td><code>rnorm</code></td>
+                <td><code>r...</code></td>
                 <td>Random Number Generator</td>
                 <td>generate \(\{X_i\}\)</td>
             </tr>
@@ -483,7 +488,117 @@ diff(pgamma(c(10, 15), 15, 1))
 
     <section id="prob-fun-list" class="slide"><div>
         <h2>Built-in Distributions (Part)</h2>
-    </div></section>
+        <table><thead>
+            <tr>
+                <td>Dist. Name</td>
+                <td>PDF or PMF</td>
+                <td>參數、說明</td>
+            </tr>
+        </thead><tbody>
+            <tr>
+                <td>Uniform <code>unif</code><br />
+                \(Unif(a, b)\)</td>
+                <td>$$
+                    f(x) = \frac{1}{b-a}
+                $$</td>
+                <td><p class="inline">
+                    \(a\): <code>min=0</code><br />
+                    \(b\): <code>max=1</code>
+                </p></td>
+            </tr>
+            <tr>
+                <td>Binomial <code>binom</code><br />
+                \(Binomial(n, p)\)</td>
+                <td>$$
+                    P(x) = {n \choose x}\,p^x\,(1-p)^{n-x}
+                $$</td>
+                <td><p class="inline">
+                    \(n\): <code>size=NA</code><br />
+                    \(p\): <code>prob=NA</code>
+                </p></td>
+            </tr>
+            <tr>
+                <td>Beta <code>beta</code><br />
+                \(Beta(a, b)\)</td>
+                <td>$$
+                    f(x) = \frac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)} x^{a-1} (1-x)^{b-1}
+                $$</td>
+                <td><p class="inline">
+                    \(a\): <code>shape1=NA</code><br />
+                    \(b\): <code>shape2=NA</code>
+                </p></td>
+            </tr>
+        </tbody></table>
+    </div><style>
+        #prob-fun-list table td {
+            vertical-align: middle;
+        }
+        #prob-fun-list table td:nth-child(1) {
+            width: 200px;
+        }
+        #prob-fun-list table td:nth-child(2) {
+            text-align: center;
+        }
+    </style></section>
+
+
+    <section id="prob-fun-list-contd" class="slide"><div>
+        <table><tbody>
+            <tr>
+                <td>Gamma <code>gamma</code><br />
+                \(Gamma(\alpha, \beta)\)</td>
+                <td>$$
+                    f(x) = \frac{\beta^\alpha}{\Gamma(\alpha)}
+                        x^{\alpha-1}e^{-\beta x}
+                $$</td>
+                <td><p class="inline">
+                \(\alpha\): <code>shape=NA</code><br />
+                \(\beta\): <code>rate=1</code>
+                </p></td>
+            </tr>
+            <tr>
+                <td>Poisson <code>pois</code><br />
+                \(Poisson(\lambda)\)</td>
+                <td>$$
+                    P(x) = \frac{\lambda^x}{x!}e^{-\lambda}
+                $$</td>
+                <td><p class="inline">
+                \(\lambda\): <code>lambda=NA</code></p></td>
+            </tr>
+            <tr>
+                <td>Exponential <code>exp</code><br />
+                \(Exp(\lambda)\)</td>
+                <td>$$
+                    f(x) = \lambda e^{-\lambda x}
+                $$</td>
+                <td><p class="inline">
+                \(\lambda\): <code>rate=NA</code>
+                </p></td>
+            </tr>
+            <tr>
+                <td>Normal <code>norm</code><br />
+                \(Norm(\mu, \sigma^2)\)</td>
+                <td>$$
+                    f(x) = \frac{1}{\sqrt{2\pi}\sigma}
+                        e^{-\frac{(x-\mu)^2}{2\sigma^2}}
+                $$</td>
+                <td><p class="inline">
+                \(\mu\): <code>mean=0</code><br />
+                \(\sigma\): <code>sd=1</code>
+                </p></td>
+            </tr>
+        </tbody></table>
+    </div><style>
+        #prob-fun-list-contd table td {
+            vertical-align: middle;
+        }
+        #prob-fun-list-contd table td:nth-child(1) {
+            width: 200px;
+        }
+        #prob-fun-list-contd table td:nth-child(2) {
+            text-align: center;
+        }
+    </style></section>
 
 
     <section id="rand-gen" class="slide"><div>
