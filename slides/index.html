@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>2013 OSSF R&amp;Statistics, Liang Bo Wang</title>
     <meta name="viewport" content="width=792, user-scalable=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Icon -->
+    <link href="pics/favicon.ico" rel="icon" type="image/x-icon" />
 
     <!-- MathJax -->
     <!-- CSS Stle -->
@@ -603,8 +606,153 @@ diff(pgamma(c(10, 15), 15, 1))
 
     <section id="rand-gen" class="slide"><div>
         <h2>Random Number Generator</h2>
+        <ul>
+            <li><code>r...</code> 都是。</li>
+            <li class="next">如何重覆產生一樣的亂數序列？</li>
+            <li class="next"><code>set.seed()</code></li>
+        </ul>
+        <pre class="language-r next">
+<code>set.seed(633) # 接下來的亂數每次都會一樣
+rnorm(1, 5, 10) # 17.36016
+rexp(1, 1) # 1.130437</code>
+        </pre>
     </div></section>
 
+
+    <section id="sampling" class="slide"><div>
+        <h2>如何做樣本抽樣？</h2>
+        <p class="tighter">使用 <code>sample()</code> 函式</p>
+        <pre class="language-r">
+<code>set.seed(633)
+sample(1:10, size=3)  # 9 1 3 5 2
+# 取後可放回（樣本可重覆）
+sample(1:10, size=3, replace=TRUE)  # 10 5 3 10 6
+# 不限數字
+sample(c("m", "a", "9"))  # "9" "a" "m"
+</code>
+        </pre>
+    </div></section>
+
+
+    <section id="sample-weighted" class="slide"><div>
+        <p class="tighter">也可以給 sample 權重</p>
+        <pre class="language-r">
+<code>sample(
+  c("ma", "throw", "to", "slipper"),
+  prob=c(1, 2, 4, 8),
+  size=10, replace=TRUE
+)
+# [1] "slipper" "slipper" "to"
+# [4] "slipper" "slipper" "slipper" "slipper"
+# [8] "slipper" "ma"      "to"
+</code>
+        </pre>
+    </div></section>
+
+
+    <section id="num-comp-ex" class="slide"><div>
+        <h2>讓我們繼續說那位男生的故事</h2>
+        <ul>
+            <li class="next">公車一樣 15 分鐘來一班</li>
+            <li class="next">但男生其實是一個魯蛇，等不了那麼久</li>
+            <li class="next">「一個等太久，你有沒有試過等兩個？」</li>
+            <li class="next">如果一次等 \(N\) 個女生。目標：8 成機率可以在 10 分鐘內等到</li>
+            <li class="next">求最小的 \(N\)</li>
+            <li class="next">嚴格地說，\(N\) 個女生都等要不同公車，且公車來的時間彼此獨立。</li>
+        </ul>
+    </div></section>
+
+
+    <section id="num-comp-ex-sol" class="slide"><div>
+        <h2>預想解法</h2>
+        <ul>
+            <li>假如我們不會算這個機率的理論值（或不好算）</li>
+            <li class="next">但如果我們模擬這個情況 5000 次<ul>
+                <li class="next">把能在 10 分鐘內等到 N 位女生任一台車
+                    訂為一次成功（<code>TRUE</code>)</li>
+                <li class="next">再算出來這 5000 次中成功的比率</li>
+                <li class="next">這個模擬值（抽樣），理應不會相距真實的機率太遠</li>
+            </ul></li>
+            <li class="next">能用程式模擬的就是小問題</li>
+        </ul>
+    </div></section>
+
+
+    <section id="num-comp-sol-code" class="slide twocol-ll"><div>
+        <div class="left">
+        <pre class="language-r small">
+<code>EXP_REP <- 5000  # 模擬次數
+early_arrival_p <- function(girl_n, th) {
+  exp.sim <- replicate(
+    EXP_REP,
+    any(rgamma(girl_n, 15, 1) <= th)
+  )
+  mean(exp.sim)  # return the rate having TRUE event
+}
+
+least.prob <- 0.8  # 超過 8 成機率
+# 猜 N 從 1 到 30 附近
+which.max(
+  sapply(1:30, function(n) early_arrival_p(n, 10)) > least.prob
+)  # return 19
+</code>
+        </pre></div><div class="right">
+            <ul>
+                <li><a href="http://"
+                       target="_blank">程式碼</a>
+                </li>
+                <li class="next">試著改模擬次數</li>
+                <li class="next">不同的分布，機率</li>
+                <li class="next">得到一個結果 19</li>
+                <li class="next">此題理論值不難求</li>
+            </ul>
+        </div>
+    </div></section>
+
+
+    <section id="num-comp-sol-theory" class="slide"><div>
+        <p>
+        $$\{T_i\}^N_{i=1} \overset{iid}{\sim} Gamma(15, 1)$$
+        </p><p>
+        $$\begin{align*}
+            &amp; P(T_{th} \text{ 分鐘有任一女生等到公車}) \\
+            &amp;= 1 - P(T_{th} \text{ 分鐘沒有女生等到公車}) \\
+            &amp;= 1 - P(T_1 > T_{th} \cap T_2 > T_{th} \cap \cdots \cap T_N > T_{th}) \\
+            &amp;= 1 - \prod_{i=1}^N P(T_i > T_{th}) \\
+            &amp;= 1 - \prod_{i=1}^N \left[ 1 - P(T_i \leq T_{th}) \right] > 0.8
+        \end{align*}$$
+        </p>
+    </div></section>
+
+
+    <section id="num-comp-sol-theory-contd" class="slide"><div>
+        <p>
+        $$\prod_{i=1}^N \left[ 1 - P(T_i \leq T_{th}) \right] = p^N < 0.2$$
+        $$~ p = 1 - P(T_i \leq T_{th})$$
+        </p>
+        <p class="next">
+            \(p\) 可由 <code>1 - pgamma(th, 15, 1)</code> 求得。<br />
+            最後可以得到 \(N\) 的最小值。<span class="next">在此 \(N\geq19\)</span>
+            $$
+                N > \frac{\log 0.2}{\log p}
+            $$
+        </p>
+    </div></section>
+
+
+
+    <section id="numerical-comp" class="slide"><div>
+        <h2>數值計算 Numerical Computation</h2>
+        <ul>
+            <li>Keywords: Monte Carlo, Bootstrap</li>
+            <li>統計的本值：使用樣本去估計母體性質<ul>
+                <li class="next">如果今天能用電腦模擬的方式抽樣很多次</li>
+                <li class="next">沒有解析解也能近似一些複雜的統計量</li>
+            </ul></li>
+            <li class="next">在越複雜的狀況，數值計算越顯得重要</li>
+            <li class="next">很可惜統計課都只能考些手算得出來的</li>
+        </ul>
+    </div></section>
 
 
     <!-- Testing Layout and Libraries -->
