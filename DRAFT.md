@@ -33,6 +33,9 @@
     - `qxxxx`: inverse CDP (quantile function)
     - `rxxxx`: random number generator
     - `diff(pxxxx(c(a, b)))` P(a< X <= b)
+- Common Distributions
+    - Uniform
+    - Binomial
 - Random Number Generating
     - `set.seed()`
     - `sample()`
