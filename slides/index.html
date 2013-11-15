@@ -655,8 +655,8 @@ sample(c("m", "a", "9"))  # "9" "a" "m"
         <ul>
             <li class="next">公車一樣 15 分鐘來一班</li>
             <li class="next">但男生其實是一個魯蛇，等不了那麼久</li>
-            <li class="next">「一個等太久，你有沒有試過等兩個？」</li>
-            <li class="next">如果一次等 \(N\) 個女生。目標：8 成機率可以在 10 分鐘內等到</li>
+            <li class="next">「一台等太久，你有沒有試過等兩台？」</li>
+            <li class="next">如果一次等 \(N\) 位女生的公車。目標：8 成機率可以在 10 分鐘內等到</li>
             <li class="next">求最小的 \(N\)</li>
             <li class="next">嚴格地說，\(N\) 個女生都等要不同公車，且公車來的時間彼此獨立。</li>
         </ul>
@@ -740,7 +740,6 @@ which.max(
     </div></section>
 
 
-
     <section id="numerical-comp" class="slide"><div>
         <h2>數值計算 Numerical Computation</h2>
         <ul>
@@ -754,118 +753,6 @@ which.max(
         </ul>
     </div></section>
 
-
-    <!-- Testing Layout and Libraries -->
-    <section id="begin-test" class="slide shout">
-        <div><h2>Playground</h2></div>
-    </section>
-
-
-    <section id="test-quote" class="slide"><div>
-        <h2>Test Quote</h2>
-        <figure>
-            <blockquote>
-                <p>根據統計的資料顯示，床是全世界最危險的地方，因為大多數的人都是死在床上，所以如果你想活久一點，千萬別上床。</p>
-            </blockquote>
-            <figcaption>- 不明的統計資料（常識？）. <a href="http://data.book.hexun.com.tw/chapter-18645-1-1.shtml" target="_blank">和訊網</a></figcaption>
-        </figure>
-    </div></section>
-
-
-    <section id="test-mathjax" class="slide"><div>
-        <h2>Test Mathjax</h2>
-        <p>$$\frac{a}{b^c}$$</p>
-    </div></section>
-
-
-    <section id="test-twocol" class="slide twocol"><div>
-        <h2>Testing Two Column model</h2>
-        <div class="left">Hi</div>
-        <div class="right">Hello</div>
-    </div><style>
-        #test-twocol div.left {
-            background: red;
-        }
-        #test-twocol div.right {
-            background: blue;
-        }
-    </style></section>
-
-
-    <section id="test-fullpage-code" class="slide"><div>
-<h2>Testing Fullpage Code</h2>
-<pre class='language-r'>
-<code>prior.choice1 <- function(x) {
-  dgamma(x, 6, 2)
-}
-print("Hello")
-curve(prior.choice1, from=0, to=10)
-curve(prior.choice2, from=0, to=10, add=TRUE, col='red')</code>
-    </pre>
-    </div></section>
-
-
-    <section id="test-twocol-code" class="slide twocol"><div>
-<h2>Two Column with smaller code</h2>
-<div class='left'><pre class="language-r small">
-<code>prior.choice1 <- function(x) {
-  dgamma(x, 6, 2)
-}
-print("Hello")
-curve(prior.choice1, from=0, to=10)
-curve(prior.choice2, from=0, to=10, add=TRUE, col='red')</code>
-        </pre></div>
-<div class="right">
-    <ul>
-        <li>efe</li>
-        <li>entire</li>
-        <li>eer</li>
-        <li>eef</li>
-    </ul>
-</div>
-    </div></section>
-
-
-    <section id="test-twocol-largeleft" class="slide twocol-ll"><div>
-<h2>Two Column with larger left half</h2>
-<div class='left'><pre class="language-r small">
-<code>prior.choice1 <- function(x) {
-  dgamma(x, 6, 2)
-}
-print("Hello")
-curve(prior.choice1, from=0, to=10)
-curve(prior.choice2, from=0, to=10, add=TRUE, col='red')</code>
-        </pre></div>
-<div class="right">
-    <ul>
-        <li>efe</li>
-        <li>entire</li>
-        <li>eer</li>
-        <li>eef</li>
-    </ul>
-</div>
-    </div></section>
-
-
-    <section id="test-twocol-largeright" class="slide twocol-lr"><div>
-<h2>Two Column with larger right half</h2>
-<div class="left">
-    <ul>
-        <li>efe</li>
-        <li>entire</li>
-        <li>eer</li>
-        <li>eef</li>
-    </ul>
-</div>
-<div class='right'><pre class="language-r small">
-<code>prior.choice1 <- function(x) {
-  dgamma(x, 6, 2)
-}
-print("Hello")
-curve(prior.choice1, from=0, to=10)
-curve(prior.choice2, from=0, to=10, add=TRUE, col='red')</code>
-        </pre></div>
-    </div></section>
 
     <!-- End Slide -->
     <section id='end' class='slide shout cover w'><div>
