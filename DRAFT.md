@@ -39,10 +39,11 @@
 - Random Number Generating
     - `set.seed()`
     - `sample()`
+- Num. Comp. Examples
+    - 魯蛇等公車
 - Numerical Computation
     - Monte Carlo simulation
     - Bootstrap
-    - some examples
 - Testing
     - `t.test`
     - `chi.test`
