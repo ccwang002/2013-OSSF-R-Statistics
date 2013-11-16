@@ -492,7 +492,7 @@ curve(bus.gamma, from=0, to=50)</code>
             <p class="tighter">公車 10 - 15 分鐘來的機率？
                 $$\begin{align}
                     &P(10 < T \leq 15) \\
-                = &P(T \leq 10) - P(T \leq 15)
+                = &P(T \leq 15) - P(T \leq 10)
                 \end{align}$$
             </p>
             <pre class="language-r">
@@ -641,9 +641,9 @@ rexp(1, 1) # 1.130437</code>
         <p class="tighter">使用 <code>sample()</code> 函式</p>
         <pre class="language-r">
 <code>set.seed(633)
-sample(1:10, size=3)  # 9 1 3 5 2
+sample(1:10, size=5)  # 9 1 3 5 2
 # 取後可放回（樣本可重覆）
-sample(1:10, size=3, replace=TRUE)  # 10 5 3 10 6
+sample(1:10, size=5, replace=TRUE)  # 10 5 3 10 6
 # 不限數字
 sample(c("m", "a", "9"))  # "9" "a" "m"
 </code>
@@ -771,6 +771,39 @@ which.max(
     </div></section>
 
 
+    <section id="hist" class="slide twocol"><div>
+        <h2>如何選擇一個理論分布</h2>
+        <div class="left">
+        <p class="tighter">手邊沒有資料玩的話，<br /><code>data()</code> 查詢內建的 datasets</p>
+        <p class="tighter next">以 <code>rock</code> 為例，<br />
+            <code>hist(rock$area)</code><br />
+            查看抽樣的分布</p>
+        <p class="tighter next">選擇常態分布，適不適合？</p>
+        </div><div class="right next">
+            <img src="r-fig/hist_rock.png" alt="" style="width: 100%;">
+        </div>
+    </div></section>
+
+
+    <section id="qqplot" class="slide twocol"><div>
+        <h2>使用 Quantile-Quantile Plot (QQ-Plot)</h2>
+        <div class="left">
+        <ul>
+            <li>兩個分布（X: 理論；Y: 抽樣）</li>
+            <li>對每一個 quantile 點找對應的值</li>
+            <li>兩個分配相近的話，會呈現 X=Y 線</li>
+        </ul>
+        <pre class="language-r">
+<code>qqnorm(rock$area)
+# or qqplot
+qqline(rock$area)
+</code>
+        </pre>
+        </div><div class="right next">
+            <img src="r-fig/qq_norm_rock.png" alt="" style="width: 100%;">
+        </div>
+    </div></section>
+
     <section id="stat-test" class="slide twocol"><div>
         <h2>統計檢定</h2>
         <p class="tighter">我們學會了估計一個機率分布（點估計）。<br />
@@ -801,11 +834,56 @@ which.max(
     </div></section>
 
 
+    <section id="reg-intro" class="slide"><div>
+        <h2>今天不能講太多的迴歸分析</h2>
+        <ul>
+            <li class="next">大家多少聽過。千年傳統，全新感受的做法</li>
+            <li class="next">蠻多生活中的現象，可能跟別的因素有所相關</li>
+            <li class="next">例如 $$
+                \text{施政滿意度} = \beta_0 + \beta_1 \text{外交情勢} + \beta_2 \text{食品安全} + \beta_3 \text{官員清廉度} + \cdots + \epsilon
+            $$</li>
+            <li class="next">迴歸不能判斷「因果關系」，但可以找出相關性高的因素</li>
+            <li class="next">在 R 裡面做也非常方便</li>
+        </ul>
+    </div></section>
+
+
+    <section id="reg-code" class="slide twocol-ll"><div>
+        <div class="left">
+            <pre class="language-r small">
+<code>> model.iris <- lm(
+  Sepal.Length ~ Petal.Length + Petal.Width,
+  data=iris
+)
+# 建立模型不會有任何 output
+> summary(model.iris)
+# ... trimmed ...
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)
+(Intercept)   4.19058    0.09705  43.181  < 2e-16 ***
+Petal.Length  0.54178    0.06928   7.820 9.41e-13 ***
+Petal.Width  -0.31955    0.16045  -1.992   0.0483 *
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+# ... trimmed ...
+</code>
+            </pre>
+        </div><div class="right next">
+            <p class="tighter">搜尋 Keyword</p>
+            <ul>
+                <li><code>formula</code></li>
+                <li><code>lm</code></li>
+                <li><code>confint</code></li>
+            </ul>
+        </div>
+    </div></section>
+
+
     <section id="whats-next" class="slide"><div>
         <h2>What's Next?</h2>
         <ul>
             <li class="next">點估計到區間估計、各種的假設檢定</li>
-            <li class="next">迴歸分析</li>
+            <li class="next">更多的迴歸分析</li>
             <li class="next">頻率學派到貝氏學派</li>
             <li class="next">有母數到無母數</li>
             <li class="next">最重要的，也是馬上可以做的…</li>
