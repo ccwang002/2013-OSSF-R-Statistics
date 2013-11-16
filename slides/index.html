@@ -140,6 +140,23 @@
     </section>
 
 
+    <section id="about-me" class="slide twocol"><div>
+        <div class="left">
+        <h2>About Me</h2>
+        <ul>
+            <li>王亮博（亮亮）</li>
+            <li>台大生醫電資所</li>
+            <li>Bioinfo. &amp; Biostat. Core Lab, <br />台大基因體中心</li>
+            <li>歡迎 Bioinfo 會後討論</li>
+        </ul>
+        </div><div class="right">
+            <p style="text-align: right;">
+            <img src="pics/me.jpg" alt="" style="width: 320px; margin-right: 50px;">
+            </p>
+        </div>
+    </div></section>
+
+
     <section id="stat-rumor" class="slide"><div>
         <h2>說到統計，很多人這麼說…</h2>
         <figure>
@@ -753,6 +770,64 @@ which.max(
         </ul>
     </div></section>
 
+
+    <section id="stat-test" class="slide twocol"><div>
+        <h2>統計檢定</h2>
+        <p class="tighter">我們學會了估計一個機率分布（點估計）。<br />
+            如果今天是區分兩組資料的平均值是不是「不一樣」…</p>
+        <div class="left next">
+            <center><p class="inline">這組蠻好判斷的</p></center>
+            <img src="r-fig/stat_test/dist_easy.png"
+                 width="100%" alt="">
+        </div><div class="right next">
+            <center><p class="inline">那這組呢？</p></center>
+            <img src="r-fig/stat_test/dist_close.png"
+                 width="100%" alt="">
+        </div>
+    </div></section>
+
+
+    <section id="stat-test-contd" class="slide"><div>
+        <ul>
+            <li>頻率（古典）學派中，制定了一套流程來處理這樣的問題</li>
+            <li class="next">也就是所謂的<em>統計檢定</em></li>
+            <li class="next">首先，聲稱一個假設（Ex. 兩個 \(\mu\) 相同）</li>
+            <li class="next">在這個假設下，計算出我們觀察到的結果發生的機率 \(P(\hat{\mu_1} = 4, \hat{\mu_2} = 50 | \mu_1 = \mu_2) = 0.005\)</li>
+            <li class="next">如果這個機率很小，表示在假設成立的情況下，我們的結果很難會發生</li>
+            <li class="next">假設很有可能是錯的（拒絕假設）</li>
+            <li class="next">完成一個統計檢定</li>
+        </ul>
+        <p class="next tighter">R 內建了大部份的檢定。</p>
+    </div></section>
+
+
+    <section id="whats-next" class="slide"><div>
+        <h2>What's Next?</h2>
+        <ul>
+            <li class="next">點估計到區間估計、各種的假設檢定</li>
+            <li class="next">迴歸分析</li>
+            <li class="next">頻率學派到貝氏學派</li>
+            <li class="next">有母數到無母數</li>
+            <li class="next">最重要的，也是馬上可以做的…</li>
+        </ul>
+        <center><h2 class="next" style="color: #EE1111;">加入 Taiwan R User Group!!</h2></center>
+        <div id="tw-r" class="next">
+            <img src="pics/twR_logo.png" width="100%" alt="">
+            <center><p>
+                <a href="http://www.meetup.com/Taiwan-R/"
+                    target="_blank">@Meetup</a>
+                <a href="https://www.youtube.com/user/TWuseRGroup"
+                    target="_blank">@Youtube</a>
+            </p></center>
+        </div>
+    </div><style>
+        #tw-r {
+            position: absolute;
+            width: 250px;
+            top: 100px;
+            right: 200px;
+        }
+    </style></section>
 
     <!-- End Slide -->
     <section id='end' class='slide shout cover w'><div>
